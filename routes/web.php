@@ -1,9 +1,12 @@
 <?php
 
+use App\Livewire\RaceDrivers;
+use App\Livewire\Races;
+use App\Models\Race;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')->with('races', Race::all());
 });
 
 Route::middleware([
@@ -11,7 +14,6 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/races', Races::class)->name('dashboard');
+    Route::get('/races/{race}/drivers', RaceDrivers::class)->name('race.drivers');
 });
