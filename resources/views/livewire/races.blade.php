@@ -9,18 +9,18 @@
             <ul role="list" class="space-y-3">
                 @foreach ($races as $race)
                 <li class="overflow-hidden bg-white px-4 py-4 shadow sm:rounded-md sm:px-6">
-                    <h3 class="text-base font-semibold leading-6 text-gray-900 mb-4">{{ $race->name }}</h3>
+                    <div class="flex justify-between">
+                        <h2 class="text-base font-semibold leading-6 text-gray-900 mb-4">{{ $race->name }}</h2>
+                        <h3 class="text-sm leading-6 text-gray-700 mb-4">
+                            {{ $race->seconds_per_penalty }}
+                            {{ str('second')->plural($race->seconds_per_penalty) }}
+                            per penalty
+                        </h3>
+                    </div>
 
                     <div class="flex justify-between">
-                        <a href="{{ route('race.drivers', $race) }}" class="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            <x-heroicon-o-user class="-ml-0.5 h-5 w-5" />
-                            Drivers
-                        </a>
-
-                        <button type="button" class="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            <x-heroicon-o-trophy class="-ml-0.5 h-5 w-5" />
-                            Leaderboard
-                        </button>
+                        <x-link icon="user" href="{{ route('race.drivers', $race) }}">Drivers</x-link>
+                        <x-link icon="trophy" href="">Leaderboard</x-link>
                     </div>
                 </li>
                 @endforeach

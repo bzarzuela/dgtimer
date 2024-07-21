@@ -6,24 +6,36 @@
         </div>
 
         <div>
-            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+            <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
             <div class="mt-2">
-                <input required placeholder="ex: 86 Day 2024 Practice Run" type="text" name="name" id="name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <x-input required
+                         placeholder="ex: 86 Day 2024 Practice Run"
+                         type="text"
+                         wire:model="name"
+                         class="w-full"
+                         id="name" />
             </div>
+            <x-input-error for="name" class="mt-2" />
         </div>
 
         <div>
             <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Seconds per penalty</label>
             <div class="mt-2">
-                <input required type="number" placeholder="Number of seconds to add per cone hit" min="0" step="1" name="time_per_penalty" id="time_per_penalty" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <x-input required
+                         type="number"
+                         placeholder="Number of seconds to add per cone hit"
+                         min="0"
+                         step="1"
+                         wire:model="seconds_per_penalty"
+                         id="seconds_per_penalty" />
             </div>
         </div>
 
         <div>
-            <button type="button" class="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                <x-heroicon-m-check-circle class="-ml-0.5 h-5 w-5" />
+            <x-action-button icon="check-circle" wire:click="saveRace">
                 Save New Race
-            </button>
+            </x-action-button>
+
         </div>
 
     </div>
