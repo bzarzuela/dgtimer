@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Driver;
 use App\Models\Race;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -28,7 +29,10 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('alkefs-lsendk-slnfgle'),
         ]);
 
-        Race::factory()->name('86 Day 2024 Practice')->create();
+        $race = Race::factory()->name('86 Day 2024 Practice')->create();
+
+        Driver::factory()->for($race)->count(10)->create();
+
         Race::factory()->name('86 Day 2024 Official')->create();
     }
 }

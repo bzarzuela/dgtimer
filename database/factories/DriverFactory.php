@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Race;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class DriverFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'race_id' => Race::factory(),
+            'name' => fake()->name(),
+            'car_number' => fake()->unique()->numberBetween(1, 99),
         ];
     }
 }
