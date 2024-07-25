@@ -1,6 +1,7 @@
 <div>
     <x-breadcrumbs>
         <x-breadcrumb href="{{ route('race.drivers', $driver->race) }}">{{ $driver->race->name }}</x-breadcrumb>
+        <x-breadcrumb>{{ $driver->name }}</x-breadcrumb>
     </x-breadcrumbs>
 
     <div class="text-5xl text-center font-semibold my-8">
@@ -26,6 +27,8 @@
     </div>
 
     <div class="mt-8 text-center">
-        <x-button type="button" wire:click="newRun">Record New Run</x-button>
+        <x-link icon="clock" href="{{ route('runs.create', $driver) }}">
+            Record New Run
+        </x-link>
     </div>
 </div>
