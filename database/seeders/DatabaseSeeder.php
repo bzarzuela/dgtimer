@@ -26,13 +26,13 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Chris',
             'email' => 'xco_22@yahoo.com',
-            'password' => bcrypt('alkefs-lsendk-slnfgle'),
+            'password' => bcrypt('86-is-x2-of-43'),
         ]);
 
-        $race = Race::factory()->name('86 Day 2024 Practice')->create();
-
-        Driver::factory()->for($race)->count(10)->create();
-
-        Race::factory()->name('86 Day 2024 Official')->create();
+        // $race = Race::factory()->name('86 Day 2024 Practice')->create();
+        //
+        // Driver::factory()->for($race)->count(10)->create();
+        //
+        // Race::factory()->name('86 Day 2024 Official')->create();
     }
 }
