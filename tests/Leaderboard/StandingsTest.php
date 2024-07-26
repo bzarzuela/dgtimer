@@ -2,7 +2,7 @@
 
 namespace Tests\Leaderboard;
 
-use App\Leaderboard\Leaderboard;
+use App\Leaderboard\Standings;
 use App\Models\Driver;
 use App\Models\Race;
 use App\Models\Run;
@@ -15,8 +15,7 @@ it('sorts the drivers by their fastest lap', function () {
     $r3 = Run::factory()->recycle($race)->time(3_000)->create();
     $r1 = Run::factory()->recycle($race)->time(1_000)->create();
 
-    $leaderboard = resolve(Leaderboard::class);
-    $drivers = $leaderboard->standings($race);
+    $drivers = resolve(Standings::class)->calculate($race);
 
     expect($drivers)->toHaveCount(4)
         ->and($drivers[0]->name)->toBe($r1->driver->name)
@@ -31,8 +30,7 @@ it('sorts the drivers by their fastest lap and skips the ones without a time', f
     Driver::factory()->recycle($race)->create();
     $r4 = Run::factory()->recycle($race)->time(4_000)->create();
 
-    $leaderboard = resolve(Leaderboard::class);
-    $drivers = $leaderboard->standings($race);
+    $drivers = resolve(Standings::class)->calculate($race);
 
     expect($race->drivers)->toHaveCount(2)
         ->and($drivers)->toHaveCount(1)
@@ -48,8 +46,7 @@ it('marks the fastest run of a driver', function() {
     Run::factory()->forDriver($driver)->time(3_000)->create();
     Run::factory()->forDriver($driver)->time(5_000)->create();
 
-    $leaderboard = resolve(Leaderboard::class);
-    $drivers = $leaderboard->standings($race);
+    $drivers = resolve(Standings::class)->calculate($race);
 
     expect($drivers)->toHaveCount(1)
         ->and($drivers[0]->fastest_time)->toBe('00:03.000');

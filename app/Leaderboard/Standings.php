@@ -4,13 +4,13 @@ namespace App\Leaderboard;
 
 use App\Models\Race;
 
-class Leaderboard
+class Standings
 {
     /**
      * @param Race $race
      * @return array<DriverData>
      */
-    public function standings(Race $race): array
+    public function calculate(Race $race): array
     {
         return $race->runs
             ->sortBy('total_time_in_milliseconds')
