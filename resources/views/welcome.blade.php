@@ -6,7 +6,7 @@
 
                 <ul>
                     @foreach($races as $race)
-                        <li><a href="{{ route('race.show', $race) }}">{{ $race->name }}</a></li>
+                        <li><a href="{{ route('race.leaderboard', $race) }}">{{ $race->name }}</a></li>
                     @endforeach
                 </ul>
 

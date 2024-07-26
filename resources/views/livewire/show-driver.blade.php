@@ -1,7 +1,7 @@
 <div>
     <x-breadcrumbs>
         <x-breadcrumb href="{{ route('race.drivers', $driver->race) }}">{{ $driver->race->name }}</x-breadcrumb>
-        <x-breadcrumb>{{ $driver->name }}</x-breadcrumb>
+        <x-breadcrumb href="{{ route('race.leaderboard', $driver->race) }}">Leaderboard</x-breadcrumb>
     </x-breadcrumbs>
 
     <div class="text-5xl text-center font-semibold my-8">

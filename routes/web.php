@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\CreateRun;
+use App\Livewire\Leaderboard;
 use App\Livewire\RaceDrivers;
 use App\Livewire\Races;
 use App\Livewire\ShowDriver;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome')->with('races', Race::all());
 });
+
+Route::get('/races/{race}/leaderboard', Leaderboard::class)->name('race.leaderboard');
 
 Route::middleware([
     'auth:sanctum',

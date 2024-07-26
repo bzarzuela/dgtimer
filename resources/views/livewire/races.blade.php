@@ -20,7 +20,7 @@
 
                     <div class="flex justify-between">
                         <x-link icon="user" href="{{ route('race.drivers', $race) }}">Drivers</x-link>
-                        <x-link icon="trophy" href="">Leaderboard</x-link>
+                        <x-link icon="trophy" href="{{ route('race.leaderboard', $race) }}">Leaderboard</x-link>
                     </div>
                 </li>
                 @endforeach
