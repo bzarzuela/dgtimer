@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Leaderboard;
+
+use App\Models\Race;
+
+class Leaderboard
+{
+    /**
+     * @param Race $race
+     * @return array<DriverData>
+     */
+    public function standings(Race $race): array
+    {
+        return $race->runs
+            ->sortBy('total_time_in_milliseconds')
+            ->unique('driver_id')
+            ->map(function ($run) use ($race) {
+                return new DriverData(
+                    $run->driver->name,
+                    $run->total_time,
+                    $race->runs
+                        ->where('driver_id', $run->driver_id)
+                        ->map(fn($r) => RunData::fromRun($r, $r->id === $run->id))
+                        ->toArray()
+                );
+            })->values()->toArray();
+    }
+}
