@@ -13,7 +13,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware
+            ->trustProxies('*')
+            ->trustHosts(['dgtimer.bryanz.com']);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
