@@ -7,7 +7,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex flex-row mx-2 text-sm">
-                <div class="min-w-32 space-y-2 bg-white p-2">
+                <div class="max-w-32 space-y-2 bg-white p-2">
                     @foreach($drivers as $driver)
                         <div>{{ $driver->name }}</div>
                     @endforeach
@@ -21,7 +21,7 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="min-w-16 font-mono space-y-2 bg-white p-2">
+                <div class="max-w-16 font-mono space-y-2 bg-white p-2">
                     @foreach($drivers as $driver)
                         <div>{{ $driver->fastest_time }}</div>
                     @endforeach
