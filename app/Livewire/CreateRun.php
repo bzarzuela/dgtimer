@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Models\Driver;
 use App\Models\Run;
-use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -32,10 +31,5 @@ class CreateRun extends Component
         $run->save();
 
         $this->redirect(route('drivers.show', $this->driver));
-    }
-
-    public function render(): View
-    {
-        return view('livewire.create-run');
     }
 }
