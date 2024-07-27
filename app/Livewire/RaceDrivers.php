@@ -2,16 +2,18 @@
 
 namespace App\Livewire;
 
+use App\Models\Driver;
 use App\Models\Race;
-use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class RaceDrivers extends Component
 {
     public Race $race;
 
-    public function render(): View
+    public function delete(Driver $driver): void
     {
-        return view('livewire.race-drivers');
+        $this->authorize('delete', $driver);
+
+        $driver->delete();
     }
 }

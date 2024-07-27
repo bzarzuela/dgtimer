@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('car_number');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

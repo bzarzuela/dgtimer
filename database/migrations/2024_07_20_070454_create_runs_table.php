@@ -27,6 +27,7 @@ return new class extends Migration
             $table->unsignedBigInteger('total_time_in_milliseconds');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

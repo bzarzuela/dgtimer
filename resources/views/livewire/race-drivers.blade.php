@@ -23,6 +23,8 @@
                             <x-link icon="clock" href="{{ route('runs.create', $driver) }}">
                                 New Timed Run
                             </x-link>
+
+                            <x-action-button icon="x-circle" href="{{ route('runs.create', $driver) }}" wire:confirm="Are you sure you want to delete {{ $driver->name }}?" wire:click.prevent="delete({{ $driver->id }})" />
                         </div>
                     </li>
                 @endforeach
