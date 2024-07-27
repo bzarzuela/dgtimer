@@ -42,7 +42,7 @@
     x-modelable="elapsedTime"
     {{ $attributes }}
 >
-    <div class="text-4xl sm:text-8xl font-mono text-center">
+    <div class="text-7xl sm:text-8xl font-mono text-center">
         <div x-cloak x-show="elapsedTime >= 0">
             <span x-text="timer.minutes">00</span>:<span x-text="timer.seconds">00</span>.<span x-text="timer.mili">000</span>
         </div>
