@@ -31,6 +31,21 @@
             </ul>
 
             <livewire:create-driver :race="$race" />
+
+            <div class="bg-white shadow sm:rounded-lg mt-8">
+                <div class="px-4 py-5 sm:p-6">
+                    <h3 class="text-base font-semibold leading-6 text-gray-900">Delete Race</h3>
+                    <div class="mt-2 sm:flex sm:items-start sm:justify-between">
+                        <div class="max-w-xl text-sm text-gray-500">
+                            <p>All the drivers and timing data will be deleted</p>
+                        </div>
+                        <div class="mt-5 sm:ml-6 sm:mt-0 sm:flex sm:flex-shrink-0 sm:items-center">
+                            <x-danger-button wire:confirm="Are you sure?" wire:click="deleteRace({{ $race->id }})">Delete Race</x-danger-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

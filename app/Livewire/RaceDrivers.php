@@ -16,4 +16,13 @@ class RaceDrivers extends Component
 
         $driver->delete();
     }
+
+    public function deleteRace(Race $race): void
+    {
+        $this->authorize('delete', $race);
+
+        $race->delete();
+
+        $this->redirectRoute('dashboard');
+    }
 }
