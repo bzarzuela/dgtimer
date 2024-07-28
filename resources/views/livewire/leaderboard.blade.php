@@ -7,44 +7,35 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            <table>
+            <table class="min-w-full divide-y divide-gray-300">
                 <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Fastest</th>
+                <tr class="divide-x">
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Driver</th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Fastest</th>
+                    @for($i = 1; $i <= $max_runs; $i++)
+                        <th scope="col" class="px-3 py-3.5 text-left text-sm text-right font-semibold text-gray-900">Run {{ $i }}</th>
+                    @endfor
                 </tr>
                 </thead>
-                <tbody>
-                @foreach ($drivers as $driver)
-                <tr>
-                    <td>{{ $driver->name }}</td>
-                    <td>{{ $driver->fastest_time }}</td>
+                <tbody class="divide-y">
+                @foreach ($drivers as $i => $driver)
+                <tr class="divide-x">
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        {{ $i + 1 }}
+                        {{ $driver->name }}
+                    </td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $driver->fastest_time }}</td>
+                    @foreach($driver->runs as $run)
+                        @if ($run->fastest)
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-white font-bold bg-black text-right">{{ $run->total_time }}</td>
+                        @else
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 text-right">{{ $run->total_time }}</td>
+                        @endif
+                    @endforeach
                 </tr>
                 @endforeach
                 </tbody>
             </table>
-
-            <div class="flex flex-row mx-2 text-sm">
-                <div class="max-w-32 space-y-2 bg-white p-2">
-                    @foreach($drivers as $driver)
-                        <div>{{ $driver->name }}</div>
-                    @endforeach
-                </div>
-                <div class="flex-1 overflow-x-auto space-y-2 bg-white p-2">
-                    @foreach($drivers as $driver)
-                        <div class="flex space-x-2 divide-x divide-green-500">
-                            @foreach ($driver->runs as $run)
-                                <div class="min-w-20 px-0.5 text-right">{{ $run->total_time }}</div>
-                            @endforeach
-                        </div>
-                    @endforeach
-                </div>
-                <div class="max-w-16 font-mono space-y-2 bg-white p-2">
-                    @foreach($drivers as $driver)
-                        <div>{{ $driver->fastest_time }}</div>
-                    @endforeach
-                </div>
-            </div>
         </div>
     </div>
 </div>
