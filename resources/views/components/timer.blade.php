@@ -47,8 +47,18 @@
             <span x-text="timer.minutes">00</span>:<span x-text="timer.seconds">00</span>.<span x-text="timer.mili">000</span>
         </div>
 
-        <div x-cloak x-show="elapsedTime < 0">
-            <span x-text="timer.seconds">00</span>
+        <div x-cloak x-show="elapsedTime < 0" class="flex space-x-4 justify-center">
+            <div class="grid grid-cols-3">
+                <span x-show="elapsedTime > -3000">
+                <x-heroicon-s-rocket-launch class="h-48 w-48 text-red-500" />
+            </span>
+                <span x-show="elapsedTime > -2000">
+                <x-heroicon-s-rocket-launch class="h-48 w-48 text-red-500" />
+            </span>
+                <span x-show="elapsedTime > -1000">
+                <x-heroicon-s-rocket-launch class="h-48 w-48 text-red-500" />
+            </span>
+            </div>
         </div>
     </div>
 
@@ -57,7 +67,7 @@
         Start
     </button>
 
-    <button x-show="running && !finished" @click="stopTiming()" type="button" class="w-full h-24 flex items-center justify-center gap-x-2 rounded-md bg-red-600 px-3.5 py-2.5 text-6xl font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">
+    <button x-show="running && !finished && elapsedTime > 0" @click="stopTiming()" type="button" class="w-full h-24 flex items-center justify-center gap-x-2 rounded-md bg-red-600 px-3.5 py-2.5 text-6xl font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">
         <x-heroicon-c-x-circle class="h-14 w-14" />
         Stop
     </button>
