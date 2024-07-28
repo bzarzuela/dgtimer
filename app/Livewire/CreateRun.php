@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Events\LeaderboardUpdated;
 use App\Leaderboard\Standings;
 use App\Models\Driver;
 use App\Models\Run;
@@ -45,6 +46,8 @@ class CreateRun extends Component
         $leaderboard = resolve(Standings::class)->calculate($this->driver->race);
 
         Cache::put('leaderboard.' . $this->driver->race_id, $leaderboard, now()->addMinutes(30));
+
+        LeaderboardUpdated::dispatch($this->driver->race_id);
 
         $this->redirect(route('drivers.show', $this->driver));
     }

@@ -1,4 +1,4 @@
-<div>
+<div x-init="Echo.channel('standings.{{ $race->id }}').listen('LeaderboardUpdated', () => { $wire.$refresh() })">
     <x-breadcrumbs>
         <x-breadcrumb href="{{ auth()->check() ? route('race.drivers', $race) : '' }}">{{ $race->name }}</x-breadcrumb>
         <x-breadcrumb>Leaderboard</x-breadcrumb>

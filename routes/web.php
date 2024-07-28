@@ -25,3 +25,8 @@ Route::middleware([
     Route::get('/drivers/{driver}', ShowDriver::class)->name('drivers.show');
     Route::get('/drivers/{driver}/runs/create', CreateRun::class)->name('runs.create');
 });
+
+Route::get('test', function () {
+    \App\Events\LeaderboardUpdated::dispatch(3);
+    return 'ok';
+});
