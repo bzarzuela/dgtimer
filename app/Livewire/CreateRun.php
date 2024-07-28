@@ -19,7 +19,16 @@ class CreateRun extends Component
     #[Validate('required|int|min:0')]
     public int $penalty_count = 0;
 
-    public function save(Standings $standings): void
+    protected $is_dnf = false;
+
+    public function dnf(): void
+    {
+        $this->is_dnf = true;
+
+        $this->save();
+    }
+
+    public function save(): void
     {
         $this->validate();
 
@@ -30,9 +39,10 @@ class CreateRun extends Component
         $run->penalty_count = $this->penalty_count;
         $run->penalty_time_in_seconds = $run->penalty_count * $this->driver->race->seconds_per_penalty;
         $run->total_time_in_milliseconds = $run->lap_time_in_milliseconds + ($run->penalty_time_in_seconds * 1000);
+        $run->is_dnf = $this->is_dnf;
         $run->save();
 
-        $leaderboard = $standings->calculate($this->driver->race);
+        $leaderboard = resolve(Standings::class)->calculate($this->driver->race);
 
         Cache::put('leaderboard.' . $this->driver->race_id, $leaderboard, now()->addMinutes(30));
 

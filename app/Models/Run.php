@@ -34,9 +34,14 @@ class Run extends Model
 
     protected function totalTime(): Attribute
     {
-        return Attribute::get(fn() =>
-            Carbon::createFromTimestampMs($this->total_time_in_milliseconds)
-                ->format('i:s.v')
+        return Attribute::get(function () {
+            if ($this->is_dnf) {
+                return 'DNF';
+            }
+
+            return Carbon::createFromTimestampMs($this->total_time_in_milliseconds)
+                ->format('i:s.v');
+        }
         );
     }
 }

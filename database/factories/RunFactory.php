@@ -48,4 +48,11 @@ class RunFactory extends Factory
             'race_id' => $driver->race_id,
         ]);
     }
+
+    public function dnf(bool $dnf = true): static
+    {
+        return $this->state(fn(array $attributes) => [
+            'is_dnf' => $dnf,
+        ]);
+    }
 }

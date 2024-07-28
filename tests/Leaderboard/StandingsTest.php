@@ -58,3 +58,21 @@ it('marks the fastest run of a driver', function() {
         ->and($runs[1]->fastest)->toBeTrue()
         ->and($runs[2]->fastest)->toBeFalse();
 });
+
+it('does not consider DNF in rankings', function () {
+    $race = Race::factory()->create();
+    $loser = Driver::factory()->recycle($race)->create();
+    $winner_with_dnf = Driver::factory()->recycle($race)->create();
+
+    Run::factory()->forDriver($loser)->time(5_000)->create();
+    Run::factory()->forDriver($winner_with_dnf)->time(2_000)->create();
+
+    Run::factory()->forDriver($loser)->time(4_000)->create();
+    Run::factory()->forDriver($winner_with_dnf)->time(1_000)->dnf()->create();
+
+    $drivers = resolve(Standings::class)->calculate($race);
+
+    expect($drivers)->toHaveCount(2)
+        ->and($drivers[0]->name)->toBe($winner_with_dnf->name)
+        ->and($drivers[1]->name)->toBe($loser->name);
+});

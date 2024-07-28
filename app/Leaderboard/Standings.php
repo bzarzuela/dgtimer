@@ -13,6 +13,7 @@ class Standings
     public function calculate(Race $race): array
     {
         return $race->runs
+            ->where('is_dnf', false)
             ->sortBy('total_time_in_milliseconds')
             ->unique('driver_id')
             ->map(function ($run) use ($race) {

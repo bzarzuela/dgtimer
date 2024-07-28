@@ -6,6 +6,24 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Fastest</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach ($drivers as $driver)
+                <tr>
+                    <td>{{ $driver->name }}</td>
+                    <td>{{ $driver->fastest_time }}</td>
+                </tr>
+                @endforeach
+                </tbody>
+            </table>
+
             <div class="flex flex-row mx-2 text-sm">
                 <div class="max-w-32 space-y-2 bg-white p-2">
                     @foreach($drivers as $driver)
