@@ -26,6 +26,15 @@ class Accounts extends Component
         $this->users = User::all();
     }
 
+    public function delete(User $user): void
+    {
+        $this->authorize('delete', $user);
+
+        $user->delete();
+
+        $this->users = User::all();
+    }
+
     public function createUser(): void
     {
         $this->validate();

@@ -15,7 +15,9 @@
                                 <p>{{ $user->email }}</p>
                             </h3>
 
+                            @can('delete', $user)
                             <x-action-button icon="x-circle" wire:confirm="Are you sure you want to delete {{ $user->name }}?" wire:click.prevent="delete({{ $user->id }})" />
+                            @endcan
                         </div>
                     </li>
                 @endforeach
