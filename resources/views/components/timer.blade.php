@@ -50,13 +50,13 @@
         <div x-cloak x-show="elapsedTime < 0" class="flex space-x-4 justify-center">
             <div class="grid grid-cols-3">
                 <span x-show="elapsedTime > -3000">
-                <x-heroicon-s-rocket-launch class="h-48 w-48 text-red-500" />
+                <x-heroicon-s-rocket-launch class="max-h-48 max-w-48 w-full h-full text-red-500" />
             </span>
                 <span x-show="elapsedTime > -2000">
-                <x-heroicon-s-rocket-launch class="h-48 w-48 text-red-500" />
+                <x-heroicon-s-rocket-launch class="max-h-48 max-w-48 w-full h-full text-red-500" />
             </span>
                 <span x-show="elapsedTime > -1000">
-                <x-heroicon-s-rocket-launch class="h-48 w-48 text-red-500" />
+                <x-heroicon-s-rocket-launch class="max-h-48 max-w-48 w-full h-full text-red-500" />
             </span>
             </div>
         </div>
