@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Accounts;
 use App\Livewire\CreateRun;
 use App\Livewire\Leaderboard;
 use App\Livewire\RaceDrivers;
@@ -24,6 +25,8 @@ Route::middleware([
 
     Route::get('/drivers/{driver}', ShowDriver::class)->name('drivers.show');
     Route::get('/drivers/{driver}/runs/create', CreateRun::class)->name('runs.create');
+
+    Route::get('/accounts', Accounts::class)->name('accounts');
 });
 
 Route::get('test', function () {
