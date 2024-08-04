@@ -19,7 +19,7 @@ class Standings
             ->whereNotNull('driver_id')
             ->map(function ($run) use ($race) {
                 return new DriverData(
-                    $run->driver?->name,
+                    $run->driver ? $run->driver->name : 'Deleted Driver',
                     $run->total_time,
                     $race->runs
                         ->where('driver_id', $run->driver_id)
